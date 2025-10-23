@@ -1,8 +1,9 @@
+require('dotenv').config();
 const amqp = require('amqplib');
 
 async function start() {
   try {
-    const connection = await amqp.connect('amqp://rabbitmq');
+    const connection = await amqp.connect(process.env.RABBITMQ_URI);
     const channel = await connection.createChannel();
     await channel.assertQueue('taskQueue', { durable: true });
     console.log('Notification Service connected to RabbitMQ');

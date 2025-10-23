@@ -1,14 +1,15 @@
+require('dotenv').config();
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 
 app.use(bodyParser.json())
 
 // create a new db with the name 'users' and connect to it
-mongoose.connect('mongodb://mongo:27017/users')
+mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('Connected to MongoDB')
   }).catch(err => {

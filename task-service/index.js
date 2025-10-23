@@ -1,15 +1,16 @@
+require('dotenv').config();
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const amqp = require('amqplib');
 
 const app = express()
-const port = 3001
+const port = process.env.PORT || 3001
 
 app.use(bodyParser.json())
 
 // create a new db with the name 'tasks' and connect to it
-mongoose.connect('mongodb://mongo:27017/tasks')
+mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('Connected to MongoDB')
   }).catch(err => {
@@ -36,7 +37,7 @@ let channel, connection;
 async function connectRabbitMQWithRetry(retries = 5, delay = 5000) {
   for (let i = 0; i < retries; i++) {
     try {
-      connection = await amqp.connect('amqp://rabbitmq');
+      connection = await amqp.connect(process.env.RABBITMQ_URI);
       channel = await connection.createChannel();
       await channel.assertQueue('taskQueue', { durable: true });
       console.log('Connected to RabbitMQ');
