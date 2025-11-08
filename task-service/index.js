@@ -25,7 +25,7 @@ const TaskSchema = new mongoose.Schema({
   createdAt: { 
     type: Date, 
     default: Date.now 
-}
+  }
 });
 
 // create a model based on the schema
