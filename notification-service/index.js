@@ -3,7 +3,7 @@ const express = require('express')
 const amqp = require('amqplib');
 
 const app = express()
-const port = process.env.PORT || 3001
+const port = process.env.PORT || 3002
 
 async function connectRabbitMQWithRetry(retries = 5, delay = 5000) {
   for (let i = 0; i < retries; i++) {
