@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: taskrelay-task-service
+  name: taskrelay-task-service
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 3001
+  selector:
+    app: taskrelay-task-service
+  type: LoadBalancer
+status:
+  loadBalancer: {}
