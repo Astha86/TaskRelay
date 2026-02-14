@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: taskrelay-task-service
+  name: taskrelay-task-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: taskrelay-task-service
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: taskrelay-task-service
+    spec:
+      containers:
+      - image: astha86/taskrelay-task-service:1.0
+        name: taskrelay-task-service
+        ports:
+          - containerPort: 3001
+        resources: {}
+status: {}

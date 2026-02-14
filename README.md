@@ -49,4 +49,4 @@ git clone https://github.com/Astha86/TaskRelay.git
 cd TaskRelay
 
 # Build and start all services
-docker compose up -d
+docker-compose up --build -d
